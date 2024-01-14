@@ -1,0 +1,22 @@
+
+
+  -- About linking --
+These are the steps to successfully link the node_modules...
+Step 1, have a project that has the node modules installed. This can be done by
+npm create vite@latest ProjectName --template react
+cd ProjectName
+npm install #install the node modules
+npm run dev #runs the website in developer mode, not necessary but a test to make sure everyting ok
+npm init # initiates the package.json file that is necessary for the link, don't worry to much about the questions it asks
+
+
+Step 2, create a new project that will link to the old
+
+npm create vite@latest NewProjectName --template react
+cd NewProjectName
+
+Step 3, finally link and install vite manually
+npx link ProjectName/node_modules #npx link is a more robust version of npm link
+npm install --save-dev vite
+npm run dev #if this runs and the website looks good then its accomplished!
+
