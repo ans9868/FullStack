@@ -1,4 +1,4 @@
-
+//exercises
 //2.2
 const Part = ({part}) =>{
     return (
@@ -6,17 +6,30 @@ const Part = ({part}) =>{
     )
 }
 
+const SumExercises = ({parts}) => {
+    let sum = 0;
+    console.log(parts)
+    parts.forEach(function (part, index) {
+        sum += part.exercises
+    });
+    console.log("Sum", sum)
+    return sum;
+}
+
 const Course = ({course}) => {
+    console.log(course)
+    console.log(SumExercises(course))
     return (
         <div>
             <h1>{course.name}</h1>
             <ul>
-                {course.parts.map(part => <Part key={part.id} part={part} /> )}
+                {course.parts.map(part => <Part key={part.id} part={part}/>)}
             </ul>
+            <b>Total of {SumExercises(course)} exercises</b>
         </div>
     )
 }
-
+//<p><b>Total of {SumExercises(parts = course.parts)} exercises</b></p>
 const App = () => {
     const course = {
         id: 1,
@@ -40,7 +53,7 @@ const App = () => {
         ]
     }
 
-    return <Course course={course} />
+    return <Course course={course}/>
 }
 
 export default App
