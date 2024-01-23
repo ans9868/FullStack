@@ -1,0 +1,1 @@
+../2.3-Course-Information/vite.config.js
