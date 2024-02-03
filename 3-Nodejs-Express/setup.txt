@@ -1,0 +1,5 @@
+
+ #The commands needed to setup a new express server, the nodemon does hotreloading
+npm init
+npm install express
+npm install --save-dev nodemon

@@ -3,6 +3,12 @@ const app = express()
 
 app.use(express.json())
 
+var morgan = require('morgan')
+
+app.use(morgan('tiny'))
+
+
+
 let persons = [
     {
         "id": 1,
@@ -27,7 +33,7 @@ let persons = [
 ]
 
 app.get('/', (req, res) => {
-    res.send('<h1>The phone book application 3.?</h1>')
+    res.send('<h1>The phone book application 3.x</h1>')
 })
 
 app.get('/info', (req, res ) => {
@@ -39,13 +45,6 @@ app.get('/api/persons', (req, res) => {
     res.json(persons)
 })
 
-const generateId = () => {
-    const maxId = persons.length > 0
-        ? Math.max(...persons.map(p => p.id))
-        : 0
-    return maxId + 1
-}
-
 app.post('/api/persons', (request, response) => {
     const body = request.body
 
@@ -55,12 +54,29 @@ app.post('/api/persons', (request, response) => {
         })
     }
 
+    if (!body.number) {
+        return response.status(400).json({
+            error: 'number missing'
+        })
+    }
+
+    if (persons.find(person => person.name === body.name )) {
+        return response.status(400).json({
+            error: 'name already exists'
+        })
+    }
+    if (persons.find(person => person.number === body.number )) {
+        return response.status(400).json({
+            error: 'number already exists'
+        })
+    }
+
+
     const person = {
         name: body.name,
         number:  body.number,
-        id:  generateId(),
+         id: Math.floor(Math.random()*100000),
     }
-
 
     persons = persons.concat(person)
 
@@ -86,6 +102,8 @@ app.delete('/api/persons/:id', (request, response) => {
     response.status(204).end()
 })
 
+
+// const PORT = 3002
 const PORT = 3001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
