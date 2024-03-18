@@ -14,4 +14,4 @@ const create = (newObject) => {
 
 
 
-export default { getAll, create}
+export default {getAll, create}

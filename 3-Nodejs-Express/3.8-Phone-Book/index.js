@@ -3,14 +3,12 @@ const express = require('express')
 const app = express()
 
 app.use(express.json())
-//app.use(express.static('dist'))
+//app.use(express.static('dist')) //do if distribution i.e. the 'dist' directory of the compiled front end is added
 
 //library 2
 var morgan = require('morgan')
 
 app.use(morgan('tiny'))
-
-
 
 let persons = [
     {
@@ -104,7 +102,6 @@ app.delete('/api/persons/:id', (request, response) => {
 
     response.status(204).end()
 })
-
 
 // const PORT = 3002
 const PORT = 3001

@@ -32,6 +32,7 @@ const AddPersonForm = ({persons, setPersons, setMessage, setMessageStatus }) => 
             .then(returnedPerson => {
                 setPersons(persons.concat(returnedPerson))
                 setNewPerson('')
+                setNewNumber('')
                 setMessageStatus(true)
                 setMessage(`Added ${personObj.name}`)
                 setTimeout(() => {
@@ -46,6 +47,7 @@ const AddPersonForm = ({persons, setPersons, setMessage, setMessageStatus }) => 
                 }, 5000)
             })
     }
+
     const handlePersonChange = (event) => {
         setNewPerson(event.target.value)
     }
@@ -57,10 +59,10 @@ const AddPersonForm = ({persons, setPersons, setMessage, setMessageStatus }) => 
     return (
         <form onSubmit={addPerson}>
             <div>
-                name: <input onChange={handlePersonChange}/>
+                name: <input value={newPerson} onChange={handlePersonChange}/>
             </div>
             <div>
-                number: <input onChange={handlePhoneChange}/>
+                number: <input value={newNumber} onChange={handlePhoneChange}/>
             </div>
             <div>
                 <button type="submit">add</button>

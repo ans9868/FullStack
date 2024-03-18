@@ -10,8 +10,6 @@ var morgan = require('morgan')
 
 app.use(morgan('tiny'))
 
-
-
 let persons = [
     {
         "id": 1,
@@ -42,7 +40,6 @@ app.get('/', (req, res) => {
 app.get('/info', (req, res ) => {
     res.send(`<h1>Phonebook has info for ${persons.length} people</h1> <br> <h1>${Date()}</h1>`)
 })
-
 
 app.get('/api/persons', (req, res) => {
     res.json(persons)
@@ -104,7 +101,6 @@ app.delete('/api/persons/:id', (request, response) => {
 
     response.status(204).end()
 })
-
 
 // const PORT = 3002
 const PORT = 3001

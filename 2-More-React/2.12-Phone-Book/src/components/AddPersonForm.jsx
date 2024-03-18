@@ -31,6 +31,7 @@ const AddPersonForm = ({persons, setPersons }) => {
             .then(returnedPerson => {
                 setPersons(persons.concat(returnedPerson))
                 setNewPerson('')
+                setNewNumber('')
             })
     }
     const handlePersonChange = (event) => {
@@ -44,10 +45,10 @@ const AddPersonForm = ({persons, setPersons }) => {
     return (
         <form onSubmit={addPerson}>
             <div>
-                name: <input onChange={handlePersonChange}/>
+                name: <input value={newPerson} onChange={handlePersonChange}/>
             </div>
             <div>
-                number: <input onChange={handlePhoneChange}/>
+                number: <input value={newNumber} onChange={handlePhoneChange}/>
             </div>
             <div>
                 <button type="submit">add</button>

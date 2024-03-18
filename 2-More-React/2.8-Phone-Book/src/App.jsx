@@ -14,20 +14,20 @@ const App = () => {
 
 
         const personExists = persons.some(person => person.name === personName)
-        const phoneExists = persons.some(person => person.phone === personPhone)
+        const phoneExists = persons.some(person => person.number === personPhone)
 
         if (personExists || phoneExists){
-            alert(personName + ' is already added to the phone book')
-            //alert(personName + ` or ` +  ` is already added to the phone book`);
+            alert(personName + ' or ' + personPhone + ' is already added to the phone book')
             return;
         }
         const personObj = {
-            name:personName,
+            name: personName,
             number: personPhone
         };
 
         setPersons(persons.concat(personObj))
         setNewPerson("")
+        setNewPhone("")
     }
 
     const handlePersonChange = (event) => {
@@ -44,10 +44,10 @@ const App = () => {
             <h2>Phonebook</h2>
             <form onSubmit={addPerson}>
                 <div>
-                    name: <input onChange={handlePersonChange}/>
+                    name: <input value={newPerson} onChange={handlePersonChange}/>
                 </div>
                 <div>
-                    number: <input onChange={handlePhoneChange}/>
+                    number: <input value={newPhone} onChange={handlePhoneChange}/>
                 </div>
                 <div>
                     <button type="submit">add</button>

@@ -18,9 +18,6 @@ const App = () => {
             })
     }, [])
 
-
-
-
     const [filter, setFilter] = useState('')
     //const personsToShow = filter.length === 0 ? persons : persons.filter(person => person.name.slice(0,filter.length).toLowerCase() === filter.toLowerCase())
     console.log(filter.length)

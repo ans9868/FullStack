@@ -9,7 +9,7 @@ import personService from "./services/persons"
 
 
 const Notification = ({message}, {positive}) => {
-    if ( message === null){
+    if (message === null){
         return null
     }
     const className = positive ? 'positiveMessage' : 'negativeMessage';
@@ -19,7 +19,6 @@ const Notification = ({message}, {positive}) => {
             {message}
         </div>
     );
-
 
 }
 

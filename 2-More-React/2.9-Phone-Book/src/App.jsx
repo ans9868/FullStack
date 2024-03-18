@@ -22,7 +22,6 @@ const App = () => {
 
         if (personExists || phoneExists){
             alert(personName + ' is already added to the phone book')
-            //alert(personName + ` or ` +  ` is already added to the phone book`);
             return;
         }
         const personObj = {
@@ -32,6 +31,7 @@ const App = () => {
 
         setPersons(persons.concat(personObj))
         setNewPerson("")
+        setNewNumber("")
     }
 
     const handlePersonChange = (event) => {
@@ -59,10 +59,10 @@ const App = () => {
             </form>
             <form onSubmit={addPerson}>
                 <div>
-                    name: <input onChange={handlePersonChange}/>
+                    name: <input value={newPerson} onChange={handlePersonChange}/>
                 </div>
                 <div>
-                    number: <input onChange={handlePhoneChange}/>
+                    number: <input value={newNumber} onChange={handlePhoneChange}/>
                 </div>
                 <div>
                     <button type="submit">add</button>

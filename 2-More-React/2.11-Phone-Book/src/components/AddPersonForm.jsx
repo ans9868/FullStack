@@ -24,6 +24,7 @@ const AddPersonForm = ({persons, setPersons }) => {
 
         setPersons(persons.concat(personObj))
         setNewPerson("")
+        setNewNumber("")
     }
     const handlePersonChange = (event) => {
         setNewPerson(event.target.value)

@@ -4,46 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91cd6abb-15bc-44bc-97cd-277c78beaf2b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.2-Course-Information copy/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.2-Course-Information copy/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.2-Course-Information copy/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.2-Course-Information copy/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.2-Course-Information copy/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.2-Course-Information copy/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.2-Course-Information copy/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.2-Course-Information copy/public/vite.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.2-Course-Information copy/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.2-Course-Information copy/src/App.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.2-Course-Information copy/src/assets/react.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.2-Course-Information copy/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.2-Course-Information copy/src/main.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.2-Course-Information copy/vite.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.3..1.5-Course-Information copy/.eslintrc.cjs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.3..1.5-Course-Information copy/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.3..1.5-Course-Information copy/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.3..1.5-Course-Information copy/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.3..1.5-Course-Information copy/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.3..1.5-Course-Information copy/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.3..1.5-Course-Information copy/public/vite.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.3..1.5-Course-Information copy/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.3..1.5-Course-Information copy/src/App.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.3..1.5-Course-Information copy/src/assets/react.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.3..1.5-Course-Information copy/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.3..1.5-Course-Information copy/src/main.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../1-Intro-to-React/1.3..1.5-Course-Information copy/vite.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../2-More-React/2.14-Phone-Book/src/components/Filter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../2-More-React/2.14-Phone-Book/src/components/Filter.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.3-Phone-Book/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../3.3-Phone-Book/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../3.3-Phone-Book/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../3.3-Phone-Book/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../aPlayground/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../aPlayground/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../aPlayground/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../aPlayground/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../aPlayground/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../aPlayground/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../personalNotes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../personalNotes.txt" afterDir="false" />
-    </list>
+    <list default="true" id="91cd6abb-15bc-44bc-97cd-277c78beaf2b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,29 +32,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "HTTP Request.scratch_3 | #1.executor": "Run",
-    "HTTP Request.scratch_3 | #2.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/user/Desktop/fullStack/3-Nodejs-Express/3.4-Phone-Book",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.dev.executor": "Run",
-    "npm.test.executor": "Run",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;HTTP Request.scratch_3 | #1.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.scratch_3 | #2.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/user/Desktop/fullStack/3-Nodejs-Express/3.4-Phone-Book&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.test.executor&quot;: &quot;Run&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "HTTP Request"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;HTTP Request&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="HTTP Request.scratch_3 | #1">
     <configuration name="scratch_3 | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/scratch_3.http" requestIdentifier="#1" runType="Run single request">
       <method v="2" />
@@ -140,6 +101,7 @@
       <updated>1706908572043</updated>
       <workItem from="1706908573089" duration="62000" />
       <workItem from="1706909285630" duration="914000" />
+      <workItem from="1710717557218" duration="61000" />
     </task>
     <servers />
   </component>

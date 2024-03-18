@@ -16,7 +16,7 @@ const App = () => {
             return;
         }
         const personObj = {
-            name:personName
+            name: personName
         };
 
         setPersons(persons.concat(personObj))
@@ -33,7 +33,7 @@ const App = () => {
             <h2>Phonebook</h2>
             <form onSubmit={addPerson}>
                 <div>
-                    name: <input onChange={handlePersonChange}/>
+                    name: <input value={newPerson} onChange={handlePersonChange}/>
                 </div>
                 <div>
                     <button type="submit">add</button>
