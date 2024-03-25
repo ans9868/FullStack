@@ -104,7 +104,8 @@ app.delete('/api/persons/:id', (request, response) => {
 })
 
 // const PORT = 3002
-const PORT = 3001
+//const PORT = 3001 //for 
+const PORT = process.env.PORT || 3001; //dynaamic port assignemnt, 8080 might be better fail case for azure
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })

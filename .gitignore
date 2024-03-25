@@ -3,6 +3,7 @@
 !*/
 .cmake
 .vscode
+.idea
 
 ##### Windows
 # Windows thumbnail cache files
