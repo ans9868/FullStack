@@ -1,14 +1,18 @@
+//app.use(express.static('dist')) //do if distribution i.e. the 'dist' directory of the compiled front end is added
 //library 1
 const express = require('express')
 const app = express()
-
-app.use(express.json())
-//app.use(express.static('dist')) //do if distribution i.e. the 'dist' directory of the compiled front end is added
-
 //library 2
 var morgan = require('morgan')
+//library 3
+const cors = require('cors');
 
+
+app.use(express.json())
 app.use(morgan('tiny'))
+app.use(cors());
+
+
 
 let persons = [
     {
@@ -105,7 +109,7 @@ app.delete('/api/persons/:id', (request, response) => {
 
 // const PORT = 3002
 //const PORT = 3001 //for 
-const PORT = process.env.PORT || 3001; //dynaamic port assignemnt, 8080 might be better fail case for azure
+const PORT = process.env.PORT || 8080;//3001 is what used for local //dynaamic port assignemnt, 8080 might be better fail case for azure
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
