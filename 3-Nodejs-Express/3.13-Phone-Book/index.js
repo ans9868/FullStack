@@ -1,37 +1,67 @@
-//library 1
+
 const express = require('express')
 const app = express()
+const cors = require('cors')
+var morgan = require('morgan')
+
 
 app.use(express.json())
 app.use(express.static('dist'))
-
-//library 2
-var morgan = require('morgan')
-
 app.use(morgan('tiny'))
+app.use(cors())
 
-let persons = [
-    {
-        "id": 1,
-        "name": "Arto Hellas",
-        "number": "040-123456"
-    },
-    {
-        "id": 2,
-        "name": "Ada Lovelace",
-        "number": "39-44-5323523"
-    },
-    {
-        "id": 3,
-        "name": "Dan Abramov",
-        "number": "12-43-234345"
-    },
-    {
-        "id": 4,
-        "name": "Mary Poppendieck",
-        "number": "39-23-6423122"
-    }
-]
+const Person = require("./models/person")
+
+//setting up args
+
+//getting the url from process.env
+
+
+// let persons = [
+//     {
+//         "id": 1,
+//         "name": "Arto Hellas",
+//         "number": "040-123456"
+//     },
+//     {
+//         "id": 2,
+//         "name": "Ada Lovelace",
+//         "number": "39-44-5323523"
+//     },
+//     {
+//         "id": 3,
+//         "name": "Dan Abramov",
+//         "number": "12-43-234345"
+//     },
+//     {
+//         "id": 4,
+//         "name": "Mary Poppendieck",
+//         "number": "39-23-6423122"
+//     }
+// ]
+
+let persons = []
+
+Person.find({}).then( person_db => {
+        // const aPerson = {
+        //     name: person.name,
+        //     number: person.number,
+        //     id: person._id,
+        // }
+        // console.log(aPerson)
+        // persons = persons.concat(aPerson)
+        //console.log(person[0])
+        //console.log(person_db)
+        person_db.forEach(aPerson => {
+            persons = persons.concat({
+                name: aPerson.name,
+                number: aPerson.number,
+                id: aPerson._id.toString()
+            })
+        })
+        console.log(persons)
+})
+
 
 app.get('/', (req, res) => {
     res.send('<h1>The phone book application 3.x</h1>')
