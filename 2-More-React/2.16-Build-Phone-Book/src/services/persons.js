@@ -1,9 +1,8 @@
 import axios from 'axios'
-//const baseUrl = 'http://localhost:3001/persons' //the original
-const baseUrl = 'http://localhost:3001/api/persons' //blocked by coors
+//const baseUrl = 'http://localhost:3001/persons' //
+//const baseUrl = 'http://localhost:3001/api/persons'
 
-
-//const baseUrl = '/api/persons' // this only added so it works for the production build when the /dist folder (when ready for distribution) is moved into the backend folder , essentailly since the backend/front end are in the same folder they can access each other locally
+const baseUrl = '/api/persons' // this only added so it works for the production build when the /dist folder (when ready for distribution) is moved into the backend folder , essentailly since the backend/front end are in the same folder they can access each other locally
 
 
 //app.use(express.static('dist')) //need to add this to the backend so that the frontend can access the path of the api relatively (like above), if the path is not done relatively it is blocked by the CORS security system (since the bakcend/frontend are not in the same path it can create security vunerabilities)
@@ -29,8 +28,11 @@ const create = (newObject) => {
 }
 
 const update = (newObject) => {
-   const request = axios.put(baseUrl, newObject)
-   return request.then(response => respone.data)
+    console.log("in update person")
+    const request = axios.put(`${baseUrl}/${newObject.id}`, newObject) //update the url here and remove newObject
+    // const request = axios.put(baseUrl, newObject) //update the url here and remove newObject
+    console.log("updated person")
+    return request.then(response => response.data)
 }
 
 const onDelete = (id) => {

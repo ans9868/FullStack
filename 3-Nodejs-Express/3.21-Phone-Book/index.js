@@ -4,7 +4,7 @@ require('dotenv').config()
 
 const Person = require("./models/person")
 
-app.use(express.static('dist')) //not used, tells express to search for static files (images gifs ect.) in teh 'dist' or distribution directory
+app.use(express.static('dist')) //not used, tells express to search for static files (images gifs ect.) in the 'dist' or distribution directory
 
 const requestLogger = (request, response, next) => {
     console.log('Method:', request.method)
@@ -99,12 +99,13 @@ app.put('/api/persons/:id', (request, response, next) => {
         name: body.name,
         number: body.number,
     }
-
+    console.log("in index.js before .findByIdAndUpdate")
     Person.findByIdAndUpdate(request.params.id, person, { new: true}).then(
         updatedNote => {
             response.json(updatedNote)
         })
         .catch(error => next(error))
+    console.log("in index.js after .findByIdAndUpdate")
 })
 
 
