@@ -6,6 +6,8 @@
 .idea
 .env
 
+.idea/
+*.xml
 
 ##### Windows
 # Windows thumbnail cache files
