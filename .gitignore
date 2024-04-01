@@ -4,6 +4,8 @@
 .cmake
 .vscode
 .idea
+.env
+
 
 ##### Windows
 # Windows thumbnail cache files

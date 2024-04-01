@@ -15,18 +15,26 @@ const AddPersonForm = ({persons, setPersons, setMessage, setMessageStatus }) => 
         const personExists = persons.some(person => person.name === personName)
         const phoneExists = persons.some(person => person.number === personPhone)
 
-        if (personExists || phoneExists){
-            alert(personName + ' is already added to the phone book')
-            //alert(personName + ` or ` +  ` is already added to the phone book`);
-            return;
-        }
+        // if (personExists || phoneExists){
+        //     alert(personName + ' is already added to the phone book')
+        //     //alert(personName + ` or ` +  ` is already added to the phone book`);
+        //     return;
+        // }
+
+        // const id = personExists ? persons.some(person => person.name === personName).id :
+
         const personObj = {
             name:personName,
             number: personPhone,
-            id: (parseInt(persons.at(-1).id, 10) + 1).toString()
+            id: (parseInt(persons.at(-1).id, 10) + 1).toString() //need to check if there are any elems for .at(-1)
         };
 
         // setPersons(persons.concat(personObj))
+
+        // if(personExists){
+        //     personService.update(personObj)
+        // } //do the right personService if the person exists already
+
         personService
             .create(personObj)
             .then(returnedPerson => {
