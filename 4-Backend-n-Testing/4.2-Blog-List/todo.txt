@@ -1,0 +1,3 @@
+Need to finish ./models/blogs.js globshcema's toJson method
+Then  ./controllers/blogs, finish it
+finally make the necessary edits to app and index
