@@ -3,16 +3,7 @@ require('express-async-errors')
 const Blog = require('../models/blog')
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
-const {request} = require("express");
 
-// const getTokenFrom = request => {
-//    const authorization = request.get('authorization')
-//     if(authorization && authorization.startsWith('Bearer ')) {
-//         return authorization.replace('Bearer ', '')
-//     }
-//     return null
-// }
-//
 
 /*
 //Old methods with promises
@@ -68,11 +59,6 @@ blogsRouter.post('/', async (request, response) => {
 
 
 blogsRouter.delete('/:id', async (request, response) => {
-    // const deletedBlog = await Blog.findByIdAndDelete(request.params.id)
-    // response.status(204).json(deletedBlog)
-
-     const body = request.body
-
      const decodedToken = jwt.verify(request.token, process.env.SECRETE)
      if(!decodedToken.id) {
          return response.status(401).json({ error: 'token invalid'})
