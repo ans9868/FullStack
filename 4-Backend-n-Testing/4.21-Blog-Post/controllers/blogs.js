@@ -71,18 +71,19 @@ blogsRouter.delete('/:id', async (request, response) => {
     // const deletedBlog = await Blog.findByIdAndDelete(request.params.id)
     // response.status(204).json(deletedBlog)
 
-     const body = request.body
-
-     const decodedToken = jwt.verify(request.token, process.env.SECRETE)
-     if(!decodedToken.id) {
-         return response.status(401).json({ error: 'token invalid'})
-     }
-     const user = await User.findById(decodedToken.id)
-     const blog = await Blog.findById(request.params.id)
-
-     if(user.id !== blog.user.id){
-         return response.status(401).json({ error: 'user is not the owner of the post' })
-     }
+    //4.21
+    // const body = request.body
+    //
+    // const decodedToken = jwt.verify(request.token, process.env.SECRETE)
+    // if(!decodedToken.id) {
+    //     return response.status(401).json({ error: 'token invalid'})
+    // }
+    // const user = await User.findById(decodedToken.id)
+    // const blog = await Blog.findById(request.params.id)
+    //
+    // if(user.id !== blog.user.id){
+    //     return response.status(401).json({ error: 'user is not the owner of the post' })
+    // }
 
     await Blog.findByIdAndDelete(request.params.id)
     response.status(204).end()
