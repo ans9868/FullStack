@@ -5,6 +5,8 @@ import loginService from './services/login.js'
 import Notification from "./components/Notification.jsx";
 import blog from "./components/Blog";
 
+import BlogForm from "./components/BlogForm.jsx";
+
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -15,9 +17,9 @@ const App = () => {
   const [positiveMessage, setPositiveMessage] = useState(null)
 
   //for creating new blog
-  const [title, setTitle] = useState([])
-  const [author, setAuthor] = useState([])
-  const [URL, setURL] = useState([])
+  // const [title, setTitle] = useState([])
+  // const [author, setAuthor] = useState([])
+  // const [URL, setURL] = useState([])
 
 
   useEffect(() => {
@@ -63,28 +65,27 @@ const App = () => {
     window.localStorage.clear()
   }
 
-  const handleAddBlog = async (event) => {
-    event.preventDefault()
+  const handleAddBlog = async (blogObject) => {
+    // event.preventDefault()
 
-    const blogObject = {
-      title: title,
-      author: author,
-      url: URL,
-    }
+    // const blogObject = {
+    //   title: title,
+    //   author: author,
+    //   url: URL,
+    // }
 
     try{
-    const responseBlog = await blogService.create(blogObject)
+        const responseBlog = await blogService.create(blogObject)
 
-    setBlogs(blogs.concat(responseBlog))
+        setBlogs(blogs.concat(responseBlog))
 
-    setTitle('')
-    setAuthor('')
-    setURL('')
-      setPositiveMessage('A new blog was added!')
-      setTimeout(() => {
-        setPositiveMessage(null)
-      }, 5000)
-
+        // setTitle('')
+        // setAuthor('')
+        // setURL('')
+        setPositiveMessage('A new blog was added!')
+        setTimeout(() => {
+          setPositiveMessage(null)
+        }, 5000)
     }catch (exception) {
       setErrorMessage('Blog unable to be posted')
       setTimeout(() => {
@@ -137,57 +138,56 @@ const App = () => {
     </div>
   )
 
-  const addBlogForm = () => (
-    <div>
-      <h2>Add Blog</h2>
-      <form onSubmit={handleAddBlog}>
-        <div>
-          username
-          <input
-              type="text"
-              value={title}
-              name={"Title"}
-              onChange={({target}) => setTitle(target.value)}
-          />
-        </div>
+  //
+  // const addBlogForm = () => (
+  //   <div>
+  //     <h2>Add Blog</h2>
+  //     <form onSubmit={handleAddBlog}>
+  //       <div>
+  //         username
+  //         <input
+  //             type="text"
+  //             value={title}
+  //             name={"Title"}
+  //             onChange={({target}) => setTitle(target.value)}
+  //         />
+  //       </div>
+  //
+  //       <div>
+  //         author
+  //         <input
+  //             type="text"
+  //             value={author}
+  //             name={"Author"}
+  //             onChange={({target}) => setAuthor(target.value)}
+  //         />
+  //       </div>
+  //
+  //       <div>
+  //         url
+  //         <input
+  //             type="text"
+  //             value={URL}
+  //             name={"URL"}
+  //             onChange={({target}) => setURL(target.value)}
+  //         />
+  //       </div>
+  //
+  //       <button type="submit">create</button>
+  //     </form>
+  //   </div>
+  // )
+  //
 
-        <div>
-          author
-          <input
-              type="text"
-              value={author}
-              name={"Author"}
-              onChange={({target}) => setAuthor(target.value)}
-          />
-        </div>
 
-        <div>
-          url
-          <input
-              type="text"
-              value={URL}
-              name={"URL"}
-              onChange={({target}) => setURL(target.value)}
-          />
-        </div>
-
-        <button type="submit">create</button>
-      </form>
-    </div>
-  )
-
-
+      //        <BlogForm handleAddBlog={handleAddBlog()} />
   return (
       <div>
         <Notification message={errorMessage}/>
         <Notification message={positiveMessage}/>
-        {user ? (
-            <>
-              {addBlogForm()}
-              {displayBlogs()}
-              {logoutForm()}
-            </>
-        ) : loginForm()}
+        <BlogForm handleAddBlog={handleAddBlog()} />
+        {displayBlogs()}
+        {loginForm()}
       </div>
   )
 }
