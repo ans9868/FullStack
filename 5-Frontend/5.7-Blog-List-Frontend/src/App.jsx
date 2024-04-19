@@ -1,31 +1,29 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Blog from './components/Blog'
 import blogService from './services/blogs'
 import loginService from './services/login.js'
 import Notification from "./components/Notification.jsx";
-import blog from "./components/Blog";
 
 import BlogForm from "./components/BlogForm.jsx";
-
+import Togglable from "./components/Togglable.jsx";
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
-  const [username, setUsername] = useState([])
-  const [password, setPassword] = useState([])
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
-  const [positiveMessage, setPositiveMessage] = useState(null)
-
-  //for creating new blog
-  // const [title, setTitle] = useState([])
+  const [positiveMessage, setPositiveMessage] = useState(null) //for creating new blog // const [title, setTitle] = useState([])
   // const [author, setAuthor] = useState([])
   // const [URL, setURL] = useState([])
+
+  const blogFormRef = useRef()
 
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    )  
+    )
   }, [])
 
   useEffect(() => {
@@ -65,27 +63,18 @@ const App = () => {
     window.localStorage.clear()
   }
 
-  const handleAddBlog = async (blogObject) => {
-    // event.preventDefault()
-
-    // const blogObject = {
-    //   title: title,
-    //   author: author,
-    //   url: URL,
-    // }
+  const handleAddBlog = async ( blogObject ) => {
+    blogFormRef.current.toggleVisibility()
 
     try{
-        const responseBlog = await blogService.create(blogObject)
+      const responseBlog = await blogService.create(blogObject)
 
-        setBlogs(blogs.concat(responseBlog))
+      setBlogs(blogs.concat(responseBlog))
+     setPositiveMessage('A new blog was added!')
+      setTimeout(() => {
+      setPositiveMessage(null)
+      }, 5000)
 
-        // setTitle('')
-        // setAuthor('')
-        // setURL('')
-        setPositiveMessage('A new blog was added!')
-        setTimeout(() => {
-          setPositiveMessage(null)
-        }, 5000)
     }catch (exception) {
       setErrorMessage('Blog unable to be posted')
       setTimeout(() => {
@@ -125,7 +114,7 @@ const App = () => {
     <div>
       <h2>blogs</h2>
         {blogs.map(blog =>
-          <Blog key={blog.id} blog={blog}/>
+          <Blog key={blog.id} blog={blog} />
     )}
     </div>
   )
@@ -138,58 +127,25 @@ const App = () => {
     </div>
   )
 
-  //
-  // const addBlogForm = () => (
-  //   <div>
-  //     <h2>Add Blog</h2>
-  //     <form onSubmit={handleAddBlog}>
-  //       <div>
-  //         username
-  //         <input
-  //             type="text"
-  //             value={title}
-  //             name={"Title"}
-  //             onChange={({target}) => setTitle(target.value)}
-  //         />
-  //       </div>
-  //
-  //       <div>
-  //         author
-  //         <input
-  //             type="text"
-  //             value={author}
-  //             name={"Author"}
-  //             onChange={({target}) => setAuthor(target.value)}
-  //         />
-  //       </div>
-  //
-  //       <div>
-  //         url
-  //         <input
-  //             type="text"
-  //             value={URL}
-  //             name={"URL"}
-  //             onChange={({target}) => setURL(target.value)}
-  //         />
-  //       </div>
-  //
-  //       <button type="submit">create</button>
-  //     </form>
-  //   </div>
-  // )
-  //
 
 
-      //        <BlogForm handleAddBlog={handleAddBlog()} />
   return (
       <div>
         <Notification message={errorMessage}/>
         <Notification message={positiveMessage}/>
-        <BlogForm handleAddBlog={handleAddBlog()} />
-        {displayBlogs()}
-        {loginForm()}
+        {user ? (
+            <>
+              <Togglable buttonLabel='new blog' ref={blogFormRef}>
+                <BlogForm createBlog={handleAddBlog}/>
+              </Togglable>
+              {displayBlogs()}
+              {logoutForm()}
+            </>
+        ) : loginForm()}
       </div>
   )
 }
 
 export default App
+
+//make line 139 toggle able
