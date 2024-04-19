@@ -34,7 +34,7 @@ const App = () => {
       setUser(user)
       blogService.setToken(user.token)
     }
-  }, []);
+  }, [])
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -59,6 +59,27 @@ const App = () => {
     }
   }
 
+
+  const handleDelete = async ( blogObject ) => {
+
+    console.log("delete triggered")
+    try{
+        await blogService.remove(blogObject)
+        const blogIndex = blogs.filter(blog => blog.id === blogObject.id)
+      if(blogIndex !== -1){
+        const updatedBlogs = blogs.filter(blog => blog.id !== blogObject.id)
+        setBlogs(updatedBlogs)
+      }else{
+        console.log("Some but happened deleting the object properly")
+      }
+
+    } catch (error) {
+        setErrorMessage('Blog unable to be deleted')
+        setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+    }
+  }
   const handleLogout = async (event) => {
     window.localStorage.removeItem('loggedBlogappUser')
     window.localStorage.clear()
@@ -104,8 +125,6 @@ const App = () => {
     }
   }
 
-
-
   const loginForm = () =>  (
     <div>
       <h2>Login Form</h2>
@@ -139,8 +158,7 @@ const App = () => {
         { blogs
             .sort((a, b) => ( a.likes > b.likes ? -1 : 1 ) ) //sort here, -1 means put a first, 1 means put b first
                 .map(
-                    blog => <Blog key={blog.id} blog={blog} handleAddLike={handleAddLike} />
-    )}
+                    blog => <Blog key={blog.id} blog={blog} handleAddLike={handleAddLike} handleDelete={handleDelete} />    )}
     </div>
   )
 

@@ -2,7 +2,7 @@ import { useRef } from "react"
 import Togglable from "./Togglable.jsx"
 // import blogServices from "../services/blogs.js"
 
-const Blog = ({ blog, handleAddLike }) => {
+const Blog = ({ blog, handleAddLike, handleDelete }) => {
   const blogRef = useRef()
     console.log(blog)
 
@@ -19,8 +19,11 @@ const Blog = ({ blog, handleAddLike }) => {
         {blog.title} {blog.author}
           <Togglable buttonLabel='view' ref={blogRef}>
               {blog.url}<br/>
-              Likes: {blog.likes} <button onClick={() => handleAddLike(blog)}>Like!</button> <br/>
+              Likes: {blog.likes}
+              <button onClick={() => handleAddLike(blog)}> Like!</button>
+              <br/>
               {blog.user.name} <br/>
+              <button onClick={() => handleDelete(blog)}>Delete</button> <br/>
           </Togglable>
       </div>
   )
