@@ -80,15 +80,43 @@ describe('Blog app', () => {
         })
 
         test('only author sees delete button', async ({ page }) => { //something wrong here
-            // const postsView = await page.getByRole('button', { name: 'view' })
 
-            for(const postView of await page.getByRole('button', { name: 'view' }).all()){
-                await postView.click()
-                const author = await page.getByTestId('author').last().textContent()
-                if(author === "aAuthor") {
+            await page.waitForSelector('[data-testid="aBlogPost"]')  // Waits for at least one blog post to be present
+            for(const blog of await page.getByTestId('aBlogPost').all()){
+                const viewButton = blog.getByRole('button', { name: 'view' })
+                await viewButton.waitFor({ state: 'visible' }) // Ensure the button is visible
+                await viewButton.click()
+
+                const author = await blog.getByTestId('postAuthor').textContent()
+                if(author === "aAuthor"){ //the author that we are logged in as
+                     await expect(page.getByRole('button', {name: 'Delete'})).toBeVisible()
+                }else{
+                    //current version of frontend/backend allows anyone to delete , so comment this part out if want pass test!
                     await expect(page.getByRole('button', {name: 'Delete'})).toBeHidden()
                 }
             }
+
+
+        })
+
+
+        test('Blogs arranged in order of likes', async  ({ page }) => {
+            var prevLikeNumber = Infinity
+            await page.waitForSelector('[data-testid="aBlogPost"]')  // Waits for at least one blog post to be present
+            for(const blog of await page.getByTestId('aBlogPost').all()){
+                const viewButton = blog.getByRole('button', { name: 'view' })
+                await viewButton.waitFor({ state: 'visible' }) // Ensure the button is visible
+                await viewButton.click()
+
+                const numLikes = parseInt((await blog.getByTestId('postLikes').textContent()).slice(8))
+
+                await expect(numLikes <= prevLikeNumber).toBeTruthy
+                prevLikeNumber = numLikes
+
+
+            }
+
+
         })
     })
 
