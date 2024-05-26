@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a5d7de1d-915e-41bd-8eee-7d20b677a92a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddPersonForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddPersonForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/persons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/persons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../3-Nodejs-Express/3.21-Phone-Book/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../3-Nodejs-Express/3.21-Phone-Book/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +58,7 @@
       <option name="presentableId" value="Default" />
       <updated>1710720216415</updated>
       <workItem from="1710720217470" duration="5576000" />
-      <workItem from="1711990746938" duration="4981000" />
+      <workItem from="1711990746938" duration="5292000" />
     </task>
     <servers />
   </component>

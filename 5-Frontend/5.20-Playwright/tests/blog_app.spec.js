@@ -51,4 +51,25 @@ describe('Blog app', () => {
 
     })
 
+    describe('When logged in', () => {
+        beforeEach(async ({ page }) => {
+            await page.getByTestId('username').fill('Joe')
+            await page.getByTestId('password').fill('password')
+            await page.getByTestId('loginButton').click()
+        })
+
+        test('a new blog can be created', async ({ page }) => {
+            await page.getByRole('button', {name: 'new blog'}).click()
+            await page.getByTestId('username').fill('aUsername')
+            await page.getByTestId('author').fill('aAuthor')
+            await page.getByTestId('url').fill('aUrl')
+            await page.getByRole('button', { name: 'create' }).click()
+            await expect(page.getByText('A new blog was added!')).toBeVisible()
+        })
+
+        test('a blog can be liked', async ({ page }) => {
+            await page.getByRole('button', { name: 'view' }).first().click()
+            await expect(page.getByRole('button', { name: 'Like!'})).toBeVisible()
+        })
+    })
 })

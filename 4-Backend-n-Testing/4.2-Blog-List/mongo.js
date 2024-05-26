@@ -19,6 +19,15 @@ const blogSchema = new mongoose.Schema({
 
 const Blog = mongoose.model('BlogList', blogSchema)
 
+
+db.yourCollection.find({ URL: { $exists: false } }) // Find documents without the URL field
+  .sort({ /* field to sort by */ }) // Sort the documents
+  .forEach(function(doc) { // Iterate over each document
+    db.yourCollection.deleteOne({ _id: doc._id }); // Delete the document
+  });
+
+//end of shenanigans
+
 if(process.argv[5] === undefined || process.argv[5] === ""){
   console.log("blog posts")
   Blog.find({}).then( result => {
