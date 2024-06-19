@@ -5,14 +5,13 @@ import AnecdoteFilter from "./components/AnecdoteFilter.jsx";
 import Notification from "./components/Notification.jsx";
 
 import anecdoteService from './services/anecdotes.js'
-import { setAnecdotes } from './reducers/anecdoteReducer.js'
+import {initializeNotes, setAnecdotes} from './reducers/anecdoteReducer.js'
 import { useDispatch } from "react-redux";
 
 const App = () => {
     const dispatch = useDispatch()
     useEffect(() => {
-        anecdoteService.getAll()
-            .then(anecdotes => dispatch(setAnecdotes(anecdotes)))
+        dispatch(initializeNotes())
     }, []) //just runs when application starts
 
     return (
