@@ -20,7 +20,7 @@ const Blog = ({ blog, handleAddLike, handleDelete }) => {
       <div data-testid='postAuthor'>  { blog.author }   </div>
       <Togglable buttonLabel='view' ref={blogRef}>
         {blog.url}<br/>
-              Likes: {blog.likes}
+        <div data-testid='postLikes'> Likes: {blog.likes} </div>
         <button onClick={() => handleAddLike(blog)}> Like!</button>
         <br/>
         {blog.user.name} <br/>

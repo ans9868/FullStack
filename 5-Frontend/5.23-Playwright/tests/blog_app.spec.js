@@ -113,9 +113,7 @@ describe('Blog app', () => {
                 await expect(numLikes <= prevLikeNumber).toBeTruthy
                 prevLikeNumber = numLikes
 
-
             }
-
 
         })
     })
