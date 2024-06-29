@@ -104,14 +104,13 @@ const CreateNew = (props) => {
         author.reset()
         info.reset()
     }
-
     return (
         <div>
             <h2>create a new anecdote</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     content
-                    <input name='content' value={content.value} onChange={(e) => content.onChange(e)}/>
+                     <input name='content' value={content.value} onChange={(e) => content.onChange(e)}/>
                 </div>
                 <div>
                     author
