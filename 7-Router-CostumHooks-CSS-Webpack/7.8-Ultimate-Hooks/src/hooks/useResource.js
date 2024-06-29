@@ -31,7 +31,7 @@ export const useResource = (baseUrl) => {
 
     useEffect(() => {
         getAll()
-    }, []); //empty dependency, only run on mount
+    }, []) //empty dependency, only run on mount
 
     return [
         resources, service
