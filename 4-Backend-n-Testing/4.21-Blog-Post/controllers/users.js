@@ -5,7 +5,7 @@ require('express-async-errors')
 const bcrypt  = require('bcrypt')
 
 usersRouter.post('/', async (request, response) => {
-    const {username, name, password } = request.body
+    const { username, name, password } = request.body
 
 
     if(username.length < 3 || password.length < 3 || await User.findOne({ username: request.body.username })){
