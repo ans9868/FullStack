@@ -21,6 +21,7 @@ const App = () => {
 
   const blogFormRef = useRef()
 
+  //todo: put the blog into the blogReducer
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs))
     console.log(blogs)
@@ -56,7 +57,7 @@ const App = () => {
       }, 5000)
     }
   }
-
+  //todo: need to look and see if need to delete blog in blogReducer *i dought i do but check
   const handleDelete = async (blogObject) => {
     console.log('delete triggered')
     try {
@@ -79,7 +80,7 @@ const App = () => {
     window.localStorage.removeItem('loggedBlogappUser')
     window.localStorage.clear()
   }
-
+  //todo: implement blogReducer here
   const handleAddBlog = async (blogObject) => {
     blogFormRef.current.toggleVisibility()
 
@@ -94,6 +95,7 @@ const App = () => {
     }
   }
 
+  //todo: implement blogReducer here, make it so addLick is done async with thunk in blogReducer with blogService
   const handleAddLike = async (blogObject) => {
     try {
       const updatedBlog = await blogService.addLike(blogObject)

@@ -2,17 +2,10 @@ import { useRef } from 'react'
 import Togglable from './Togglable.jsx'
 // import blogServices from "../services/blogs.js"
 
+//todo: implement with blogReducer instead of blogRef which I think not needed anymore
 const Blog = ({ blog, handleAddLike, handleDelete }) => {
   const blogRef = useRef()
   console.log(blog)
-
-  // const handleAddLike = async (id) => {
-  //     try {
-  //         await blogServices.addLike(id)
-  //     }catch (error){
-  //         console.error("error in adding like to blog")
-  //     }
-  // }
 
   return (
     <div data-testid="aBlogPost">
@@ -31,8 +24,4 @@ const Blog = ({ blog, handleAddLike, handleDelete }) => {
   )
 }
 
-//need to add username for 5.9
-
 export default Blog
-
-//make it so on click likes go up

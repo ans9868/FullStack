@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
+//todo: implement with blogReducer
 const BlogForm = ({ createBlog }) => {
-  //createBlog as input
   const [title, setTitle] = useState([])
   const [author, setAuthor] = useState([])
   const [URL, setURL] = useState([])
