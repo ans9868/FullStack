@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   /*
     the 'ref' here is a reference to the mongo db name of where the other objectId's are
     although techinically its better practice for the model name to be 'Blog' like everyhting else
-    I think it helps me learn to differentiate the different tools for the model name to be differ
+    I think it helps me learn to differentiate the different tools for the model name to be different
    */
 })
 //^ possibly put `blogs: [{ ... }] ` of the blog posts put in

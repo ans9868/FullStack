@@ -19,7 +19,7 @@ const BlogForm = ({ createBlog }) => {
     setAuthor('')
     setURL('')
   }
-
+  //todo: make the <input ... /> for the tiel author url into a component to reuse code
   return (
     <div>
       <h2>Add Blog</h2>
