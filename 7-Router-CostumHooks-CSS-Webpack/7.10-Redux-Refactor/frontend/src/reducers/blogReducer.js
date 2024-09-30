@@ -11,7 +11,7 @@ const blogReducer = createSlice({
     URL: null,
   },
   reducers: {
-    //need to use async through thunk
+    //todo: need to use async through thunk
     createBlog(action, state) {},
     addLike: { action, state },
   },

@@ -95,7 +95,7 @@ const App = () => {
     }
   }
 
-  //todo: implement blogReducer here, make it so addLick is done async with thunk in blogReducer with blogService
+  //todo: implement blogReducer here, make it so AddLike is done async with thunk in blogReducer with blogService
   const handleAddLike = async (blogObject) => {
     try {
       const updatedBlog = await blogService.addLike(blogObject)
