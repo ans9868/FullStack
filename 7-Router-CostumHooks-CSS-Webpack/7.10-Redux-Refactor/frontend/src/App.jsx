@@ -3,23 +3,28 @@ import Blog from './components/Blog'
 import blogService from './services/blogs'
 import loginService from './services/login.js'
 import Notification from './components/Notification.jsx'
+import { postNotification } from './reducers/notificationReducer.js'
 
 import BlogForm from './components/BlogForm.jsx'
 import Togglable from './components/Togglable.jsx'
 
 import { useDispatch } from 'react-redux'
-import { postNotification } from './reducers/notificationReducer.js'
 
+import LoginForm from "./components/LoginForm.jsx";
+import LogoutForm from "./components/LogoutForm.jsx";
+
+/* custom hooks */
+import useLogout from "./hooks/useLogout.js";
 const App = () => {
   const dispatch = useDispatch()
 
   const [blogs, setBlogs] = useState([])
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
 
   const blogFormRef = useRef()
+
+  // const handleLogout = useLogout()
 
   //todo: put the blog into the blogReducer
   useEffect(() => {
@@ -27,36 +32,6 @@ const App = () => {
     console.log(blogs)
   }, [])
 
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-      blogService.setToken(user.token)
-    }
-  }, [])
-
-  const handleLogin = async (event) => {
-    event.preventDefault()
-    // console.log(`Username ${username} \nPassword ${password}`)
-    try {
-      const user = await loginService.login({
-        username,
-        password,
-      })
-
-      window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
-      blogService.setToken(user.token)
-      setUser(user)
-      setUsername('')
-      setPassword('')
-    } catch (exception) {
-      setErrorMessage('wrong credentials')
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
-    }
-  }
   //todo: need to look and see if need to delete blog in blogReducer *i dought i do but check
   const handleDelete = async (blogObject) => {
     console.log('delete triggered')
@@ -76,10 +51,10 @@ const App = () => {
       }, 5000)
     }
   }
-  const handleLogout = async (event) => {
-    window.localStorage.removeItem('loggedBlogappUser')
-    window.localStorage.clear()
-  }
+  // const handleLogout = async (event) => {
+  //   window.localStorage.removeItem('loggedBlogappUser')
+  //   window.localStorage.clear()
+  // }
   //todo: implement blogReducer here
   const handleAddBlog = async (blogObject) => {
     blogFormRef.current.toggleVisibility()
@@ -116,37 +91,6 @@ const App = () => {
     }
   }
 
-  const loginForm = () => (
-    <div>
-      <h2>Login Form</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          username
-          <input
-            data-testid="username"
-            type="username"
-            value={username}
-            name={'Username'}
-            onChange={({ target }) => setUsername(target.value)}
-          />
-        </div>
-        <div>
-          password
-          <input
-            data-testid="password"
-            type="password"
-            value={password}
-            name={'Password'}
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </div>
-        <button data-testid="loginButton" type="submit">
-          login
-        </button>
-      </form>
-    </div>
-  )
-
   const displayBlogs = () => (
     <div>
       <h2>blogs</h2>
@@ -163,13 +107,6 @@ const App = () => {
     </div>
   )
 
-  const logoutForm = () => (
-    <div>
-      <form onSubmit={handleLogout}>
-        <button type="submit">Logout</button>
-      </form>
-    </div>
-  )
 
   return (
     <div>
@@ -180,15 +117,15 @@ const App = () => {
             <BlogForm createBlog={handleAddBlog} />
           </Togglable>
           {displayBlogs()}
-          {logoutForm()}
+          {LogoutForm()}
         </>
       ) : (
-        loginForm()
+        <LoginForm setUser={setUser} setErrorMessage={setErrorMessage}/>
       )}
     </div>
   )
 }
-
+//{username, password, setUser, setUsername, setPassword, setErrorMessage}
 export default App
 
 //make line 139 toggle able
