@@ -1,19 +1,21 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-//import loginServce, blogService, logoutService
+import { useDispatch } from "react-redux";
 import blogService from "../services/blogs.js";
 import axios from 'axios'
+import { setToken } from '../reducers/blogsReducer.js'
 
 const loginUrl = '/api/login'
 
 
 export const initializeAuth = createAsyncThunk(
     'auth/initializeAuth',
-    async () => {
+    async (_, {dispatch}) => {
         const loggedUserJson = window.localStorage.getItem('loggedBlogappUser')
         if (loggedUserJson) {
             const user = JSON.parse(loggedUserJson)
             console.log(`initialize Auth UserJson: ${user}`)
             blogService.setToken(user.token)
+            dispatch(setToken(user.token))
             window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
             return user
         }
@@ -23,12 +25,13 @@ export const initializeAuth = createAsyncThunk(
 
 export const login = createAsyncThunk(
     'auth/login', //might need to do some finiking with { username , password } as previously was just credentials
-    async ({ username, password }, { rejectWithValue }) => {
+    async ({ username, password }, { rejectWithValue, dispatch }) => {
         try {
             const response = await axios.post(loginUrl, { username, password }); //credentials = {username, password}
             const user = response.data
             console.log(`authReducer user from axios:` + user)
             blogService.setToken(user.token) //todo: do this with blog reducer in the future
+            dispatch(setToken(user.token))
             window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
             return user
         } catch(error) {
@@ -57,7 +60,7 @@ const authReducer = createSlice({
     extraReducers: (builder) => {
        builder.addCase(initializeAuth.fulfilled, (state, action) => {
                 state.status = 'idle'
-                state.user = action.payload.username
+                state.user = action.payload ? action.payload.username : null
                 state.error = null
            })
            .addCase(login.pending, (state) => {
@@ -82,5 +85,6 @@ const authReducer = createSlice({
             })
     }
 })
+
 
 export default authReducer.reducer;

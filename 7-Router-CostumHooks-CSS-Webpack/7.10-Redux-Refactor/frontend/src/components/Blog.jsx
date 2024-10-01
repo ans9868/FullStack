@@ -5,7 +5,7 @@ import Togglable from './Togglable.jsx'
 //todo: implement with blogsReducer instead of blogRef which I think not needed anymore
 const Blog = ({ blog, handleAddLike, handleDelete }) => {
   const blogRef = useRef()
-  console.log(blog)
+  // console.log(blog)
 
   return (
     <div data-testid="aBlogPost">
