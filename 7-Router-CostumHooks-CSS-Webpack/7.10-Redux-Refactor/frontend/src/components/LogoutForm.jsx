@@ -1,9 +1,13 @@
-//need finish useLogout hook
-import useLogin from "../hooks/useLogin.js"
-import useLogout from "../hooks/useLogout.js";
+import {logout} from "../reducers/authReducer.js";
+import { useDispatch} from "react-redux";
 
 const LogoutForm = () => {
-    const handleLogout = useLogout()
+    const dispatch = useDispatch()
+
+    const handleLogout = async (event) => {
+        event.preventDefault()
+        dispatch(logout())
+    }
 
     return (
         <div>

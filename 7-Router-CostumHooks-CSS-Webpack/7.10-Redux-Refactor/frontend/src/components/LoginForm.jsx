@@ -1,9 +1,16 @@
-import useLogin from "../hooks/useLogin.js";
 import {useState} from "react";
-const loginForm = ({setUser, setErrorMessage}) => {
+import {useDispatch} from "react-redux";
+import { login } from "../reducers/authReducer.js";
+
+const loginForm = ({setErrorMessage}) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const handleLogin = useLogin(username, password, setUser, setUsername, setPassword, setErrorMessage)
+    // const handleLogin = useLogin(username, password, setUser, setUsername, setPassword, setErrorMessage)
+    const dispatch = useDispatch()
+    const handleLogin = async (event) => {
+        event.preventDefault()
+        dispatch(login({ username, password}))
+    }
     return (
     <div>
         <h2>Login Form</h2>

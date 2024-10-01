@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import Togglable from './Togglable.jsx'
 // import blogServices from "../services/blogs.js"
 
-//todo: implement with blogReducer instead of blogRef which I think not needed anymore
+//todo: implement with blogsReducer instead of blogRef which I think not needed anymore
 const Blog = ({ blog, handleAddLike, handleDelete }) => {
   const blogRef = useRef()
   console.log(blog)
