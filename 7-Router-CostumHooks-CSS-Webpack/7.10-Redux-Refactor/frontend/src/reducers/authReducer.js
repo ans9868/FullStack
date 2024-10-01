@@ -13,9 +13,8 @@ export const initializeAuth = createAsyncThunk(
         const loggedUserJson = window.localStorage.getItem('loggedBlogappUser')
         if (loggedUserJson) {
             const user = JSON.parse(loggedUserJson)
-            console.log(`initialize Auth UserJson: ${user}`)
             blogService.setToken(user.token)
-            dispatch(setToken(user.token))
+            await dispatch(setToken(user.token))
             window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
             return user
         }
@@ -31,7 +30,8 @@ export const login = createAsyncThunk(
             const user = response.data
             console.log(`authReducer user from axios:` + user)
             blogService.setToken(user.token) //todo: do this with blog reducer in the future
-            dispatch(setToken(user.token))
+            console.log(`token set to ${user.token}`)
+            await dispatch(setToken(user.token))
             window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
             return user
         } catch(error) {

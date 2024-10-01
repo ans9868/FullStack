@@ -48,33 +48,19 @@ export const addLike = createAsyncThunk(
 )
 
 
-/*
-  const handleAddBlog = async (blogObject) => {
-    blogFormRef.current.toggleVisibility()
-
-    try {
-      const responseBlog = await blogService.create(blogObject)
-
-      setBlogs(blogs.concat(responseBlog))
-
-      dispatch(postNotification({ message: 'A new blog was added!' }))
-    } catch (exception) {
-      dispatch(postNotification({ message: 'Blog unable to be posted' }))
-    }
-  }
- */
 
 
 export const addBlog = createAsyncThunk(
     "blogs/addBlog",
-    async(newBlog, { getState, rejectWithValue}) => {
+    async(newBlog, { getState, rejectWithValue, dispatch}) => {
         try{
             const state = getState()
-            const config = {
-                headers: { Authorization: state.token },
-            }
 
+            const config = {
+                headers: { Authorization: `Bearer ${state.blogs.token}` },
+            }
             const response = await axios.post(`${blogsUrl}`, newBlog, config)
+            dispatch(initializeBlogs())
             return response.data
         }catch(error){
             rejectWithValue("Error in adding blog")
@@ -94,7 +80,8 @@ const blogsReducer = createSlice({
   },
   reducers: {
       setToken(state, action){
-          state.token = action.payload
+          console.log(`token set to ${action.payload}`)
+          state.token = (action.payload).trim()
       }
   },
   extraReducers: (builder) => {

@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import {addBlog} from "../reducers/blogsReducer.js";
+import {useDispatch} from "react-redux";
 
 //todo: implement with blogsReducer
 const BlogForm = ({ createBlog }) => {
@@ -6,27 +8,28 @@ const BlogForm = ({ createBlog }) => {
   const [author, setAuthor] = useState([])
   const [URL, setURL] = useState([])
 
-
-
-
-  const addBLog = (event) => {
+  const dispatch = useDispatch()
+  const handleAddBlog = (event) => {
     event.preventDefault()
-    createBlog({
+    dispatch(addBlog({
       title: title,
       author: author,
       url: URL,
       likes: 0,
-    })
+    }))
 
     setTitle('')
     setAuthor('')
     setURL('')
   }
+
+
+
   //todo: make each <input ... input/> into component to reuse code
   return (
     <div>
       <h2>Add Blog</h2>
-      <form onSubmit={addBLog}>
+      <form onSubmit={handleAddBlog}>
         <div>
           username
           <input
