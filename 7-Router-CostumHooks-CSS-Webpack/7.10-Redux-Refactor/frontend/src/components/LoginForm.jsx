@@ -2,7 +2,7 @@ import {useState} from "react";
 import {useDispatch} from "react-redux";
 import { login } from "../reducers/authReducer.js";
 
-const loginForm = ({setErrorMessage}) => {
+const loginForm = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     // const handleLogin = useLogin(username, password, setUser, setUsername, setPassword, setErrorMessage)

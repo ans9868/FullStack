@@ -7,7 +7,7 @@ const notificationSlice = createSlice({
     postNotification(state, action) {
       console.log('Notification post: ', action.payload)
       state.message = action.payload.message
-      state.duration = action.payload.duration
+      state.duration = action.payload.duration || 5000
       state.visible = true
       console.log('updated state: ' + state)
     },

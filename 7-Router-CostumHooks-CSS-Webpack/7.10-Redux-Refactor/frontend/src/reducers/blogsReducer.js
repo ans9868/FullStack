@@ -1,16 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-import blogs from "../services/blogs.js";
-import blogService from "../services/blogs.js";
 //import blogService from "../services/blogs.js";
 
 const blogsUrl = '/api/blogs'
+
+import { postNotification } from "./notificationReducer.js";
+
 
 export const initializeBlogs = createAsyncThunk(
     'blogs/initialization',
     async () => {
       const response = await axios.get(blogsUrl)
-      // console.log(`initializeBlogs ${JSON.stringify(response.data)}`)
       return (response.data)
     }
 )
@@ -18,11 +18,13 @@ export const initializeBlogs = createAsyncThunk(
 
 export const deleteBlog = createAsyncThunk(
     'blogs/deleteBlog',
-    async (blogId, {rejectWithValue}) => {
+    async (blogId, {rejectWithValue, dispatch}) => {
         try {
             await axios.delete(`${blogsUrl}/${blogId}`)
+            dispatch(postNotification({message:"Deleted blog"}))
             return blogId
         }catch(error){
+            dispatch(postNotification({message:"Failed to delete blog"}))
             return rejectWithValue("Failed to delete blog")
         }
     }
@@ -31,7 +33,7 @@ export const deleteBlog = createAsyncThunk(
 
 export const addLike = createAsyncThunk(
     'blogs/addLike',
-    async (blogObject, { rejectWithValue}) => {
+    async (blogObject, { rejectWithValue, dispatch}) => {
         try{
          const newBlogObject = {
             title: blogObject.title,
@@ -40,15 +42,14 @@ export const addLike = createAsyncThunk(
             likes: blogObject.likes + 1,
         }
         const response = await axios.put(`${blogsUrl}/${blogObject.id}`, newBlogObject)
+        dispatch(postNotification({message:"Added like to a blog"}))
         return response.data
     }catch(error){
+        dispatch(postNotification({message:"Failed to add like to a blog"}))
         rejectWithValue("Failed to add like")
         }
     }
 )
-
-
-
 
 export const addBlog = createAsyncThunk(
     "blogs/addBlog",
@@ -60,9 +61,11 @@ export const addBlog = createAsyncThunk(
                 headers: { Authorization: `Bearer ${state.blogs.token}` },
             }
             const response = await axios.post(`${blogsUrl}`, newBlog, config)
+            dispatch(postNotification({message:"A new blog was added!"}))
             dispatch(initializeBlogs())
             return response.data
         }catch(error){
+            dispatch(postNotification({message:"Failed to add a new blog"}))
             rejectWithValue("Error in adding blog")
         }
     }

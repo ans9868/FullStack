@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { useDispatch } from "react-redux";
-import blogService from "../services/blogs.js";
 import axios from 'axios'
 import { setToken } from '../reducers/blogsReducer.js'
 
@@ -13,7 +12,6 @@ export const initializeAuth = createAsyncThunk(
         const loggedUserJson = window.localStorage.getItem('loggedBlogappUser')
         if (loggedUserJson) {
             const user = JSON.parse(loggedUserJson)
-            blogService.setToken(user.token)
             await dispatch(setToken(user.token))
             window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
             return user
@@ -29,7 +27,6 @@ export const login = createAsyncThunk(
             const response = await axios.post(loginUrl, { username, password }); //credentials = {username, password}
             const user = response.data
             console.log(`authReducer user from axios:` + user)
-            blogService.setToken(user.token) //todo: do this with blog reducer in the future
             console.log(`token set to ${user.token}`)
             await dispatch(setToken(user.token))
             window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
@@ -42,7 +39,6 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk('auth/logout', async () => {
     window.localStorage.removeItem('loggedBlogappUser')
-    blogService.setToken(null)
     // todo: refresh page here or else logout button no work
     return null
 })
