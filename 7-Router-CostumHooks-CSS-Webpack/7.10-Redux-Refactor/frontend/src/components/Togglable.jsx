@@ -11,13 +11,10 @@ const Togglable = forwardRef((props, ref) => {
     };
 
     const show = () => {
-        console.log("Togglable show() called");
         setVisible(true);
     };
 
     const hide = () => setVisible(false);
-
-    console.log("Togglable component rendering");
 
     useImperativeHandle(ref, () => ({
         toggleVisibility,
