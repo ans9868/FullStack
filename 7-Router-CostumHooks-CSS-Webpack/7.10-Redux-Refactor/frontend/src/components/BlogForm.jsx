@@ -2,8 +2,7 @@ import { useState } from 'react'
 import {addBlog} from "../reducers/blogsReducer.js";
 import {useDispatch} from "react-redux";
 
-//todo: implement with blogsReducer
-const BlogForm = ({ createBlog }) => {
+const BlogForm = () => {
   const [title, setTitle] = useState([])
   const [author, setAuthor] = useState([])
   const [URL, setURL] = useState([])

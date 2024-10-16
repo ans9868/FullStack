@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-//import blogService from "../services/blogs.js";
 
 const blogsUrl = '/api/blogs'
 
@@ -15,7 +14,6 @@ export const initializeBlogs = createAsyncThunk(
     }
 )
 
-
 export const deleteBlog = createAsyncThunk(
     'blogs/deleteBlog',
     async (blogId, {rejectWithValue, dispatch}) => {
@@ -29,7 +27,6 @@ export const deleteBlog = createAsyncThunk(
         }
     }
 )
-
 
 export const addLike = createAsyncThunk(
     'blogs/addLike',
@@ -70,8 +67,6 @@ export const addBlog = createAsyncThunk(
         }
     }
 )
-
-
 
 const blogsReducer = createSlice({
   name: 'blogs',

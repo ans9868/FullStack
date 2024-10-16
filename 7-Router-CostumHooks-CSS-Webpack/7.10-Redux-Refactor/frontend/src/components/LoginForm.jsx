@@ -5,7 +5,6 @@ import { login } from "../reducers/authReducer.js";
 const loginForm = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    // const handleLogin = useLogin(username, password, setUser, setUsername, setPassword, setErrorMessage)
     const dispatch = useDispatch()
     const handleLogin = async (event) => {
         event.preventDefault()

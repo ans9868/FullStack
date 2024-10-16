@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { clearNotification } from '../reducers/notificationReducer.js'
 import { useEffect } from 'react'
-import { current } from '@reduxjs/toolkit'
 
 const Notification = () => {
   const notification = useSelector((state) => state.notification)
