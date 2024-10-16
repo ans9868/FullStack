@@ -1,25 +1,36 @@
-import { useRef } from 'react'
-import Togglable from './Togglable.jsx'
+import { useRef, useState, useEffect } from 'react';
+import Togglable from './Togglable.jsx';
 
-//todo: implement with blogsReducer instead of blogRef which I think not needed anymore
 const Blog = ({ blog, handleAddLike, handleDelete }) => {
-  const blogRef = useRef()
+    const blogRef = useRef();
+    const [localLikes, setLocalLikes] = useState(blog.likes);
 
-  return (
-    <div data-testid="aBlogPost">
-      {blog.title}
-      <div data-testid="postAuthor"> {blog.author} </div>
-      <Togglable buttonLabel="view" ref={blogRef}>
-        {blog.url}
-        <br />
-        <div data-testid="postLikes"> Likes: {blog.likes} </div>
-        <button onClick={() => handleAddLike(blog)}> Like!</button>
-        <br />
-        {blog.user.name} <br />
-        <button onClick={() => handleDelete(blog)}>Delete</button> <br />
-      </Togglable>
-    </div>
-  )
-}
+    const handleLocalLike = () => {
+        setLocalLikes(localLikes + 1); // Update local UI for likes
+        handleAddLike(blog); // Dispatch the like action to Redux
 
-export default Blog
+        if (blogRef.current) {
+            blogRef.current.show()
+        } else {
+            console.error("blogRef.current is null or undefined");
+        }
+    };
+
+    return (
+        <div data-testid="aBlogPost">
+            {blog.title}
+            <div data-testid="postAuthor"> {blog.author} </div>
+            <Togglable buttonLabel="view" ref={blogRef}>
+                {blog.url}
+                <br />
+                <div data-testid="postLikes"> Likes: {localLikes} </div>
+                <button onClick={handleLocalLike}> Like!</button>
+                <br />
+                {blog.user.name} <br />
+                <button onClick={() => handleDelete(blog)}>Delete</button> <br />
+            </Togglable>
+        </div>
+    );
+};
+
+export default Blog;
