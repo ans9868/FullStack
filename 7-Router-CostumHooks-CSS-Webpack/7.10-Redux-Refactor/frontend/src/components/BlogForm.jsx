@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import {addBlog} from "../reducers/blogsReducer.js";
-import {useDispatch} from "react-redux";
+import { addBlog } from '../reducers/blogsReducer.js'
+import { useDispatch } from 'react-redux'
 
 const BlogForm = () => {
   const [title, setTitle] = useState([])
@@ -10,19 +10,19 @@ const BlogForm = () => {
   const dispatch = useDispatch()
   const handleAddBlog = (event) => {
     event.preventDefault()
-    dispatch(addBlog({
-      title: title,
-      author: author,
-      url: URL,
-      likes: 0,
-    }))
+    dispatch(
+      addBlog({
+        title: title,
+        author: author,
+        url: URL,
+        likes: 0,
+      }),
+    )
 
     setTitle('')
     setAuthor('')
     setURL('')
   }
-
-
 
   //todo: make each <input ... input/> into component to reuse code
   return (
