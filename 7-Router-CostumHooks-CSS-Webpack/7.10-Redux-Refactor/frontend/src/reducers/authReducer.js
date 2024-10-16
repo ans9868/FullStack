@@ -25,7 +25,7 @@ export const login = createAsyncThunk(
     try {
       const response = await axios.post(loginUrl, { username, password }) //credentials = {username, password}
       const user = response.data
-      console.log(`authReducer user from axios:` + user)
+      console.log(`authReducer user from axios:` + JSON.stringify(user))
       console.log(`token set to ${user.token}`)
       await dispatch(setToken(user.token))
       window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
@@ -45,7 +45,9 @@ export const logout = createAsyncThunk('auth/logout', async () => {
 const authReducer = createSlice({
   name: 'auth',
   initialState: {
-    user: null,
+    user: null, //all user info
+    name: null,
+    token: null, //the assignment requireds
     status: 'idle',
     error: null,
   },
@@ -54,7 +56,7 @@ const authReducer = createSlice({
     builder
       .addCase(initializeAuth.fulfilled, (state, action) => {
         state.status = 'idle'
-        state.user = action.payload ? action.payload.username : null
+        state.user = action.payload ? action.payload : null
         state.error = null
       })
       .addCase(login.pending, (state) => {
@@ -64,7 +66,7 @@ const authReducer = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.status = 'succeeded'
         state.user = action.payload
-        console.log(`Login fulfilled, user is here: ${state.user}`)
+        console.log(`Login fulfilled, user is here: ${JSON.stringify(state.user)}`)
         state.error = null
       })
       .addCase(login.rejected, (state) => {
