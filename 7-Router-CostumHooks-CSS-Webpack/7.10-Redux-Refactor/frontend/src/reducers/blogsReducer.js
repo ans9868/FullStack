@@ -15,37 +15,21 @@ export const initializeBlogs = createAsyncThunk(
 
 export const deleteBlog = createAsyncThunk(
   'blogs/deleteBlog',
-  async (blogId, { rejectWithValue, dispatch }) => {
+  async (blogId, { getState, rejectWithValue, dispatch }) => {
+    console.log("in deleteBlog reducer")
     try {
-      await axios.delete(`${blogsUrl}/${blogId}`)
+      const state = getState()
+      const config = {
+        headers: { Authorization: `Bearer ${state.blogs.token}` },
+      }
+      console.log()
+      const response = await axios.delete(`${blogsUrl}/${blogId}`, config)
+      console.log(`Delete response ${JSON.stringify(response)}`)
       dispatch(postNotification({ message: 'Deleted blog' }))
       return blogId
     } catch (error) {
       dispatch(postNotification({ message: 'Failed to delete blog' }))
       return rejectWithValue('Failed to delete blog')
-    }
-  },
-)
-
-export const addLike = createAsyncThunk(
-  'blogs/addLike',
-  async (blogObject, { rejectWithValue, dispatch }) => {
-    try {
-      const newBlogObject = {
-        title: blogObject.title,
-        author: blogObject.author,
-        url: blogObject.url,
-        likes: blogObject.likes + 1,
-      }
-      const response = await axios.put(
-        `${blogsUrl}/${blogObject.id}`,
-        newBlogObject,
-      )
-      dispatch(postNotification({ message: 'Added like to a blog' }))
-      return response.data
-    } catch (error) {
-      dispatch(postNotification({ message: 'Failed to add like to a blog' }))
-      rejectWithValue('Failed to add like')
     }
   },
 )
@@ -68,6 +52,30 @@ export const addBlog = createAsyncThunk(
       rejectWithValue('Error in adding blog')
     }
   },
+)
+
+
+export const addLike = createAsyncThunk(
+    'blogs/addLike',
+    async (blogObject, { rejectWithValue, dispatch }) => {
+      try {
+        const newBlogObject = {
+          title: blogObject.title,
+          author: blogObject.author,
+          url: blogObject.url,
+          likes: blogObject.likes + 1,
+        }
+        const response = await axios.put(
+            `${blogsUrl}/${blogObject.id}`,
+            newBlogObject,
+        )
+        dispatch(postNotification({ message: 'Added like to a blog' }))
+        return response.data
+      } catch (error) {
+        dispatch(postNotification({ message: 'Failed to add like to a blog' }))
+        rejectWithValue('Failed to add like')
+      }
+    },
 )
 
 const blogsReducer = createSlice({
