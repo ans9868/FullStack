@@ -72,17 +72,18 @@ blogsRouter.post('/', async (request, response) => {
 blogsRouter.delete('/:id', async (request, response) => {
   // const deletedBlog = await Blog.findByIdAndDelete(request.params.id)
   // response.status(204).json(deletedBlog)
-  console.log("in delete")
   const decodedToken = jwt.verify(request.token, process.env.SECRETE)
-  if(!decodedToken.id) {
-      return response.status(401).json({ error: 'token invalid'})
+  if (!decodedToken.id) {
+    return response.status(401).json({ error: 'token invalid' })
   }
   const user = await User.findById(decodedToken.id)
   const blog = await Blog.findById(request.params.id)
   const blogPoster = await User.findById(blog.user)
 
-  if(user.id !== blogPoster.id.toString()){
-      return response.status(401).json({ error: 'user is not the owner of the post' })
+  if (user.id !== blogPoster.id.toString()) {
+    return response
+      .status(401)
+      .json({ error: 'user is not the owner of the post' })
   }
 
   await Blog.findByIdAndDelete(request.params.id)
@@ -104,7 +105,6 @@ blogsRouter.put('/:id', async (request, response) => {
   }).populate('user', { username: 1, name: 1, id: 1 })
   // await Blog.findByIdAndUpdate(request.params.id, blog, {new : true})
   // const updatedBlog = await Blog.findById(request.params.id)
-  // console.log(updatedBlog)
   response.json(updatedBlog)
 })
 

@@ -13,6 +13,18 @@ import { initializeAuth } from './reducers/authReducer.js'
 import BlogList from './components/BlogList.jsx'
 import { initializeBlogs } from './reducers/blogsReducer.js'
 
+import ReactDOM from 'react-dom/client'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  Navigate,
+  useParams,
+  useNavigate,
+  useMatch,
+} from 'react-router-dom'
+
 const App = () => {
   const dispatch = useDispatch()
 

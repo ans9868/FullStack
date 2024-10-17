@@ -32,7 +32,6 @@ const BlogList = () => {
   }
 
   const handleDelete = (blog) => {
-    console.log("in handle delete")
     dispatch(deleteBlog(blog.id)) // Make sure blogId is passed correctly
   }
 

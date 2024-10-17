@@ -66,7 +66,9 @@ const authReducer = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.status = 'succeeded'
         state.user = action.payload
-        console.log(`Login fulfilled, user is here: ${JSON.stringify(state.user)}`)
+        console.log(
+          `Login fulfilled, user is here: ${JSON.stringify(state.user)}`,
+        )
         state.error = null
       })
       .addCase(login.rejected, (state) => {

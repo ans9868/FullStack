@@ -16,7 +16,7 @@ export const initializeBlogs = createAsyncThunk(
 export const deleteBlog = createAsyncThunk(
   'blogs/deleteBlog',
   async (blogId, { getState, rejectWithValue, dispatch }) => {
-    console.log("in deleteBlog reducer")
+    console.log('in deleteBlog reducer')
     try {
       const state = getState()
       const config = {
@@ -24,7 +24,7 @@ export const deleteBlog = createAsyncThunk(
       }
       console.log()
       const response = await axios.delete(`${blogsUrl}/${blogId}`, config)
-      console.log(`Delete response ${JSON.stringify(response)}`)
+      // console.log(`Delete response ${JSON.stringify(response)}`)
       dispatch(postNotification({ message: 'Deleted blog' }))
       return blogId
     } catch (error) {
@@ -54,28 +54,27 @@ export const addBlog = createAsyncThunk(
   },
 )
 
-
 export const addLike = createAsyncThunk(
-    'blogs/addLike',
-    async (blogObject, { rejectWithValue, dispatch }) => {
-      try {
-        const newBlogObject = {
-          title: blogObject.title,
-          author: blogObject.author,
-          url: blogObject.url,
-          likes: blogObject.likes + 1,
-        }
-        const response = await axios.put(
-            `${blogsUrl}/${blogObject.id}`,
-            newBlogObject,
-        )
-        dispatch(postNotification({ message: 'Added like to a blog' }))
-        return response.data
-      } catch (error) {
-        dispatch(postNotification({ message: 'Failed to add like to a blog' }))
-        rejectWithValue('Failed to add like')
+  'blogs/addLike',
+  async (blogObject, { rejectWithValue, dispatch }) => {
+    try {
+      const newBlogObject = {
+        title: blogObject.title,
+        author: blogObject.author,
+        url: blogObject.url,
+        likes: blogObject.likes + 1,
       }
-    },
+      const response = await axios.put(
+        `${blogsUrl}/${blogObject.id}`,
+        newBlogObject,
+      )
+      dispatch(postNotification({ message: 'Added like to a blog' }))
+      return response.data
+    } catch (error) {
+      dispatch(postNotification({ message: 'Failed to add like to a blog' }))
+      rejectWithValue('Failed to add like')
+    }
+  },
 )
 
 const blogsReducer = createSlice({

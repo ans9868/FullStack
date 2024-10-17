@@ -1,13 +1,11 @@
 import { useRef, useState, useEffect } from 'react'
 import Togglable from './Togglable.jsx'
-import AuthReducer from "../reducers/authReducer.js";
-import {useSelector} from "react-redux";
+import AuthReducer from '../reducers/authReducer.js'
+import { useSelector } from 'react-redux'
 const Blog = ({ blog, handleAddLike, handleDelete }) => {
-
   const blogRef = useRef()
   const [localLikes, setLocalLikes] = useState(blog.likes)
 
-  console.log(blog)
   const handleLocalLike = () => {
     setLocalLikes(localLikes + 1) // Update local UI for likes
     handleAddLike(blog) // Dispatch the like action to Redux
@@ -20,8 +18,6 @@ const Blog = ({ blog, handleAddLike, handleDelete }) => {
   }
 
   const username = useSelector((state) => state.authentication.user.username)
-  console.log(`Blog.jsx ${JSON.stringify(username)}`)
-
 
   return (
     <div data-testid="aBlogPost">
@@ -33,9 +29,9 @@ const Blog = ({ blog, handleAddLike, handleDelete }) => {
         <div data-testid="postLikes"> Likes: {localLikes} </div>
         <button onClick={handleLocalLike}> Like!</button>
         <br />
-        {blog.user.name} <br/>
+        {blog.user.name} <br />
         {username === blog.user.username ? (
-            <button onClick={() => handleDelete(blog)}>Delete</button>
+          <button onClick={() => handleDelete(blog)}>Delete</button>
         ) : null}
       </Togglable>
     </div>
