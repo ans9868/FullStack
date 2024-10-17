@@ -13,6 +13,8 @@ import { initializeAuth } from './reducers/authReducer.js'
 import BlogList from './components/BlogList.jsx'
 import { initializeBlogs } from './reducers/blogsReducer.js'
 
+import Users from './components/Users.jsx'
+
 import ReactDOM from 'react-dom/client'
 import {
   BrowserRouter as Router,
@@ -40,17 +42,26 @@ const App = () => {
   return (
     <div>
       <Notification />
-      {user ? (
-        <>
-          <Togglable buttonLabel="new blog">
-            <BlogForm />
-          </Togglable>
-          <BlogList />
-          <LogoutForm />
-        </>
-      ) : (
-        <LoginForm />
-      )}
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            user ? (
+              <>
+                <Togglable buttonLabel="new blog">
+                  <BlogForm />
+                </Togglable>
+                <BlogList />
+                <LogoutForm />
+              </>
+            ) : (
+              <LoginForm />
+            )
+          }
+        />
+        <Route path="/users" element={<Users />} />
+      </Routes>
     </div>
   )
 }
