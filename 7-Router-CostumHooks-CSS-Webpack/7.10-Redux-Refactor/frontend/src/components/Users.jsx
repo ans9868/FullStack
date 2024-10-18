@@ -36,5 +36,6 @@ const Users = () => {
     </div>
   )
 }
+//todo: user.blogs.length seems a little long and not accurate
 
 export default Users

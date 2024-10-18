@@ -26,6 +26,8 @@ import {
   useNavigate,
   useMatch,
 } from 'react-router-dom'
+import User from './components/User.jsx'
+import { getAllUsers } from './reducers/usersReducers.js'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -37,6 +39,7 @@ const App = () => {
   useEffect(() => {
     dispatch(initializeAuth())
     dispatch(initializeBlogs())
+    dispatch(getAllUsers()) //maybe change this because only need to get 1 user for User.jsx
   }, [dispatch])
 
   return (
@@ -61,6 +64,7 @@ const App = () => {
           }
         />
         <Route path="/users" element={<Users />} />
+        <Route path="/users/:id" element={<User />} />
       </Routes>
     </div>
   )

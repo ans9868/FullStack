@@ -1,0 +1,9 @@
+#General
+Make sure the state of redux persists between routes, as it seems like it isn't, can do this with 
+
+npm install redux-persist
+
+(the rest is on chatGPT)
+
+#1
+Print out all the information for blogs in users  
