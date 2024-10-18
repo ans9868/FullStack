@@ -2,7 +2,7 @@ import axios from 'axios'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { postNotification } from './notificationReducer.js'
 import users from '../components/Users.jsx'
-import user from '../components/User.jsx'
+import user from '../components/UserDetail.jsx'
 import { initializeBlogs } from './blogsReducer.js'
 const usersUrl = '/api/users'
 
@@ -45,7 +45,7 @@ export const getUserBlogs = createAsyncThunk(
   },
 )
 
-//todo: finish this function here then look at User.jsx list of what to do
+//todo: finish this function here then look at UserDetail.jsx list of what to do
 
 const usersReducer = createSlice({
   name: 'users',

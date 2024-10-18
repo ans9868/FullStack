@@ -26,8 +26,9 @@ import {
   useNavigate,
   useMatch,
 } from 'react-router-dom'
-import User from './components/User.jsx'
+import UserDetail from './components/UserDetail.jsx'
 import { getAllUsers } from './reducers/usersReducers.js'
+import BlogDetail from './components/BlogDetail.jsx'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -39,7 +40,7 @@ const App = () => {
   useEffect(() => {
     dispatch(initializeAuth())
     dispatch(initializeBlogs())
-    dispatch(getAllUsers()) //maybe change this because only need to get 1 user for User.jsx
+    dispatch(getAllUsers()) //maybe change this because only need to get 1 user for UserDetail.jsx
   }, [dispatch])
 
   return (
@@ -64,7 +65,8 @@ const App = () => {
           }
         />
         <Route path="/users" element={<Users />} />
-        <Route path="/users/:id" element={<User />} />
+        <Route path="/users/:id" element={<UserDetail />} />
+        <Route path="/blogs/:id" element={<BlogDetail />} />
       </Routes>
     </div>
   )

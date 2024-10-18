@@ -1,4 +1,4 @@
-import Blog from './Blog.jsx'
+import BlogItem from './BlogItem.jsx'
 import blogsReducer, { deleteBlog, addLike } from '../reducers/blogsReducer.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -45,7 +45,7 @@ const BlogList = () => {
     <div>
       <h2>Blogs</h2>
       {sortedBlogs.map((blog) => (
-        <Blog
+        <BlogItem
           key={blog.id}
           blog={blog}
           handleAddLike={handleAddLike}

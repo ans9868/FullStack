@@ -2,7 +2,8 @@ import { useRef, useState, useEffect } from 'react'
 import Togglable from './Togglable.jsx'
 import AuthReducer from '../reducers/authReducer.js'
 import { useSelector } from 'react-redux'
-const Blog = ({ blog, handleAddLike, handleDelete }) => {
+import { Link } from 'react-router-dom'
+const BlogItem = ({ blog, handleAddLike, handleDelete }) => {
   const blogRef = useRef()
   const [localLikes, setLocalLikes] = useState(blog.likes)
 
@@ -20,8 +21,8 @@ const Blog = ({ blog, handleAddLike, handleDelete }) => {
   const username = useSelector((state) => state.authentication.user.username)
 
   return (
-    <div data-testid="aBlogPost">
-      {blog.title}
+    <div data-testid="aBlogPost" key={blog.id}>
+      <Link to={`/blogs/${blog.id}`}> {blog.title} </Link>
       <div data-testid="postAuthor"> {blog.author} </div>
       <Togglable buttonLabel="view" ref={blogRef}>
         {blog.url}
@@ -38,4 +39,4 @@ const Blog = ({ blog, handleAddLike, handleDelete }) => {
   )
 }
 
-export default Blog
+export default BlogItem

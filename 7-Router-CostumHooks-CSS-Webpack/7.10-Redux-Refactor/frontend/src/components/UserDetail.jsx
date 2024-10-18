@@ -12,9 +12,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getAllUsers, getUserBlogs } from '../reducers/usersReducers.js'
 import { useEffect } from 'react'
-import { initializeBlogs } from '../reducers/blogsReducer.js'
 
-const User = () => {
+const UserDetail = () => {
   const { id: userId } = useParams()
   const { userBlogs, status } = useSelector((state) => state.users)
   const { user } = useSelector((state) => state.authentication) //todo: how come the data doesn't persist to here ? this line works fine in Users.js, need to do the persist memorry thingy
@@ -24,7 +23,7 @@ const User = () => {
   // const { userBlogs, status } = useSelector((state) => state.users)
 
   useEffect(() => {
-    // console.log('User.jsx => useEffect => dispatch(getUserBlogs()')
+    // console.log('UserDetail.jsx => useEffect => dispatch(getUserBlogs()')
     const fetchData = async () => {
       try {
         await dispatch(getUserBlogs(userId))
@@ -41,11 +40,10 @@ const User = () => {
     return <div>loading user information</div>
   }
   if (userBlogs.length === 0) {
-    return <div>loading user's blogs</div>
+    return <div>loading user's blogs or they haven't posted anything</div>
   }
   return (
     <div>
-      <div>User.jsx userId</div>
       <b>
         <h2>{user.name}</h2> <br />
         <h3>Added blogs</h3>
@@ -59,4 +57,4 @@ const User = () => {
   )
 }
 
-export default User
+export default UserDetail

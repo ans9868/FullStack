@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import usersReducers, { getAllUsers } from '../reducers/usersReducers.js'
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 const Users = () => {
   const { users, status } = useSelector((state) => state.users)
@@ -28,7 +29,9 @@ const Users = () => {
         <li className="header">Number of blogs created</li>
         {users.map((user) => (
           <React.Fragment key={user.id}>
-            <li>{user.name}</li>
+            <li>
+              <Link to={`/users/${user.id}`}> {user.name} </Link>
+            </li>
             <li>{user.blogs.length}</li>
           </React.Fragment>
         ))}
