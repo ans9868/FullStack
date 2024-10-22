@@ -2,8 +2,7 @@
 
 Need to remove extra blog posts that are deleted from the blogschema but not from the list of blogs the users own.
 
-
-17.17 add navigation bar to top
+Have to remake tests, as much as like them can't be asked rn
 
 17.18 add ability to make comments
 

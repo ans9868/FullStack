@@ -29,6 +29,7 @@ import {
 import UserDetail from './components/UserDetail.jsx'
 import { getAllUsers } from './reducers/usersReducers.js'
 import BlogDetail from './components/BlogDetail.jsx'
+import Menu from './components/Menu.jsx'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -42,11 +43,27 @@ const App = () => {
     dispatch(initializeBlogs())
     dispatch(getAllUsers()) //maybe change this because only need to get 1 user for UserDetail.jsx
   }, [dispatch])
+  // const Menu = () => {
+  //   const menuItem = {
+  //     paddingRight: 5,
+  //   }
+  //   const menuBar = {}
+  //   return (
+  //     <div style={menuBar}>
+  //       <Link to="/" style={menuItem}>
+  //         Blogs
+  //       </Link>
+  //       <Link to="/users" style={menuItem}>
+  //         Users
+  //       </Link>
+  //     </div>
+  //   )
+  // }
 
   return (
     <div>
       <Notification />
-
+      {user ? <Menu /> : null}
       <Routes>
         <Route
           path="/"
@@ -57,16 +74,21 @@ const App = () => {
                   <BlogForm />
                 </Togglable>
                 <BlogList />
-                <LogoutForm />
               </>
             ) : (
               <LoginForm />
             )
           }
         />
-        <Route path="/users" element={<Users />} />
-        <Route path="/users/:id" element={<UserDetail />} />
-        <Route path="/blogs/:id" element={<BlogDetail />} />
+        <Route path="/users" element={user ? <Users /> : <Navigate to="/" />} />
+        <Route
+          path="/users/:id"
+          element={user ? <UserDetail /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/blogs/:id"
+          element={user ? <BlogDetail /> : <Navigate to="/" />}
+        />
       </Routes>
     </div>
   )

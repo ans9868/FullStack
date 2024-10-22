@@ -1,17 +1,9 @@
-/*
-todo:
-Maybe need to add a new backend thingy to get all the posts of a certain user, its in the information of the user in the database so shouldn't be too hard
-
-*Need to add a new aysncThunk function in blogsReducer to return all the blogs of a certain user
-*Need to get the use this function here : )
-*Next need to polish the component, do the react stuff
-*Should I return a new file
-*finally, put User:id on the router on App.jsx
- */
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getAllUsers, getUserBlogs } from '../reducers/usersReducers.js'
 import { useEffect } from 'react'
+import BlogItem from './BlogItem.jsx'
+import { addLike, deleteBlog } from '../reducers/blogsReducer.js'
 
 const UserDetail = () => {
   const { id: userId } = useParams()
@@ -50,7 +42,16 @@ const UserDetail = () => {
       </b>
       <ul className="added-blogs">
         {userBlogs.map((blog) => (
-          <li key={blog.id}>{blog.title}</li>
+          <BlogItem
+            key={blog.id}
+            blog={blog}
+            handleAddLike={() => {
+              dispatch(addLike())
+            }}
+            handleDelete={() => {
+              dispatch(deleteBlog(blog.id))
+            }}
+          />
         ))}
       </ul>
     </div>
