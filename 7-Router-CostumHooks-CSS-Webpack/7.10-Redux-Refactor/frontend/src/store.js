@@ -4,6 +4,11 @@ import blogsReducer from './reducers/blogsReducer.js'
 import authReducer from './reducers/authReducer.js'
 import usersReducers from './reducers/usersReducers.js'
 
+// const persistConfig = {
+//   key: 'root',
+//   storage,
+// }
+
 const store = configureStore({
   reducer: {
     notification: notificationReducer,
