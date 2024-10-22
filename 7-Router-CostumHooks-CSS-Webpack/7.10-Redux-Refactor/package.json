@@ -1,7 +1,8 @@
 {
   "scripts": {
     "front-dev": "cd frontend && npx vite",
-    "back-dev": "cd backend && NODE_ENV=develpment npx nodemon index.js"
+    "back-dev": "cd backend && NODE_ENV=develpment npx nodemon index.js",
+    "front-test": "cd frontend/playwright-tests/ && npm run test"
   },
   "dependencies": {
     "prettier": "^3.3.2",
