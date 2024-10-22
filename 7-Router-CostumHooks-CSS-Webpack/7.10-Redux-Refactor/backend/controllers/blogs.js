@@ -35,6 +35,7 @@ blogsRouter.post('/', (request, response) => {
 
 blogsRouter.get('/', async (request, response) => {
   const blogs = await Blog.find({}).populate('user', {
+    //the .populate is to make sure information about the user in included, 1 is the default if its not included since our database is not strict
     username: 1,
     name: 1,
     id: 1,
@@ -80,6 +81,9 @@ blogsRouter.delete('/:id', async (request, response) => {
   const blog = await Blog.findById(request.params.id)
   const blogPoster = await User.findById(blog.user)
 
+  if (!blog) {
+    return response.status(404).json({ error: 'blog not found' })
+  }
   if (user.id !== blogPoster.id.toString()) {
     return response
       .status(401)
@@ -87,6 +91,11 @@ blogsRouter.delete('/:id', async (request, response) => {
   }
 
   await Blog.findByIdAndDelete(request.params.id)
+  user.blogs = user.blogs.filter(
+    (blogId) => blogId.toString() !== blog.id.toString(),
+  ) //filter out the blog that IS equal to blog.id
+  await user.save()
+
   response.status(204).end()
 })
 
@@ -103,6 +112,10 @@ blogsRouter.put('/:id', async (request, response) => {
   const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blog, {
     new: true,
   }).populate('user', { username: 1, name: 1, id: 1 })
+
+  if (!blog) {
+    return response.status(404).json({ error: 'blog not found' })
+  }
   // await Blog.findByIdAndUpdate(request.params.id, blog, {new : true})
   // const updatedBlog = await Blog.findById(request.params.id)
   response.json(updatedBlog)

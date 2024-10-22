@@ -78,7 +78,7 @@ describe('Tests with Credentials', () => {
 
     const postBlogs = await api.get('/api/blogs')
 
-    strictEqual(initialBlogs._body.length, postBlogs._body.length + 1)
+    strictEqual(initialBlogs._body.length, postBlogs._body.length)
   })
 
   test('testing for PUT, updating information of a course', async () => {
@@ -103,6 +103,9 @@ describe('Tests with Credentials', () => {
 
   after(async () => {
     await mongoose.connection.close()
+  })
+  test('cleaning up after the test making sure there are not any extra blogs in the user', async () => {
+    await api.get('/api/testing/cleanup')
   })
 })
 //async/wait above
