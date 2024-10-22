@@ -1,9 +1,16 @@
 #General
-Make sure the state of redux persists between routes, as it seems like it isn't, can do this with 
 
-npm install redux-persist
+Need to remove extra blog posts that are deleted from the blogschema but not from the list of blogs the users own.
 
-(the rest is on chatGPT)
 
-#1
-Print out all the information for blogs in users  
+17.17 add navigation bar to top
+
+17.18 add ability to make comments
+
+17.19 add ability add comments and blog posts 
+
+7.20 style with CSS, like in pictures && more
+
+7.21 submit the excersize
+
+
