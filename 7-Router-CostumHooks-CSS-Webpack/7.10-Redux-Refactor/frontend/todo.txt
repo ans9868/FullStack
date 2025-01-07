@@ -1,15 +1,10 @@
 #General
 
-Need to remove extra blog posts that are deleted from the blogschema but not from the list of blogs the users own.
-
-Have to remake tests, as much as like them can't be asked rn
 
 17.18 add ability to make comments
 
 17.19 add ability add comments and blog posts 
 
 7.20 style with CSS, like in pictures && more
-
-7.21 submit the excersize
 
 
